@@ -1,6 +1,6 @@
 # Stockexperts Crew
 
-Welcome to Stockexperts Crew, powered by [crewAI]((link unavailable))
+Welcome to Stockexperts Crew, powered by [crewAI].
 Unlock efficient stock research with our innovative multi-agent AI system, built on crewAI's robust framework.
 Our mission is to simplify the discovery of top-performing stocks across industries and sectors, making investment decisions easier for you.
 
