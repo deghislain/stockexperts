@@ -14,33 +14,34 @@ class StockexpertsCrew():
 
 
 	@agent
-	def researcher(self) -> Agent:
+	def research_analyst(self) -> Agent:
 		return Agent(
-			config=self.agents_config['researcher'],
+			config=self.agents_config['research_analyst'],
 			llm=llm,
 			# tools=[MyCustomTool()], # Example of custom tool, loaded on the beginning of file
 			verbose=True
 		)
 
 	@agent
-	def reporting_analyst(self) -> Agent:
+	def financial_analyst(self) -> Agent:
 		return Agent(
-			config=self.agents_config['reporting_analyst'],
+			config=self.agents_config['financial_analyst'],
 			llm=llm,
 			verbose=True
 		)
 
 	@task
-	def research_task(self) -> Task:
+	def stock_research_task(self) -> Task:
 		return Task(
-			config=self.tasks_config['research_task'],
+			config=self.tasks_config['stock_research_task'],
+			output_file='stock_research_results.md'
 		)
 
 	@task
-	def reporting_task(self) -> Task:
+	def financial_analysis_task(self) -> Task:
 		return Task(
-			config=self.tasks_config['reporting_task'],
-			output_file='report.md'
+			config=self.tasks_config['financial_analysis_task'],
+			output_file='stock_report.md'
 		)
 
 	@crew

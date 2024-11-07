@@ -19,7 +19,7 @@ app.layout = main_layout()
     [Input('input-text', 'value'),
      Input("search_id", "n_clicks")]
 )
-def update_output(n_clicks,topic):
+def update_output(topic, n_clicks):
     if topic is None or topic == '':
         return 'You have not entered anything yet.'
     else:

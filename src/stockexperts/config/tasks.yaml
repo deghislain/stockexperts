@@ -1,21 +1,33 @@
-research_task:
+stock_research_task:
   description: >
-    Conduct a thorough research on {topic} related stocks.
-    Make sure you find any interesting and relevant information given the current year is 2024.
-    Pay special attention to any significant events, market sentiments, stock current price, and analysts' opinions. 
-    Also include upcoming events like earnings and others.
+    Conduct comprehensive research on {topic}-related stocks, focusing on 2024 market trends and insights. Gather and analyze relevant data on:
+        Significant events and market sentiments
+        Current stock prices and trading volumes
+        Analysts' opinions and consensus estimates
+        Upcoming events, including earnings releases, dividend announcements, and industry conferences
+
+    Deliver a detailed report highlighting key findings, trends, and investment implications.
   expected_output: >
     A list with 10 bullet points of the most performing {topic} related stocks which current price is below $10.
     Do not include stocks with current price higher than $10.
-  agent: researcher
+  agent: research_analyst
 
-reporting_task:
+financial_analysis_task:
   description: >
-    Review the context you got and expand on each stock symbol into a full section for a report.
-    Pay special attention to financial health and market performance. This includes examining key financial metrics such as
-    P/E ratio, EPS growth, revenue trends, and debt-to-equity ratio. Also, analyze the stock's performance in comparison 
-    to its industry peers and overall market trends.
+    Using the search results from the research_analyst develop comprehensive stock profiles by expanding each symbol into a detailed report section. 
+    Focus on financial health and market performance, 
+    incorporating the following key metrics and analyses:
+        Financial Health:
+            P/E ratio
+            EPS growth
+            Revenue trends
+            Debt-to-equity ratio
+        Market Performance:
+            Peer comparison: benchmark against industry averages and competitors
+            Market trend analysis: assess stock performance relative to broader market indices
+
+    Ensure each stock profile provides a thorough assessment of its investment potential, highlighting strengths, weaknesses, opportunities, and threats (SWOT analysis).
   expected_output: >
     A fully fledge reports with financial health and market performance for each stock symbol or company.
     Formatted as markdown without '```'
-  agent: reporting_analyst
+  agent: financial_analyst
