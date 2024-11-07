@@ -16,13 +16,16 @@ app.layout = main_layout()
 # Define the callback to update the output text based on the input
 @app.callback(
     Output('output-text', 'children'),
-    [Input('input-text', 'value')]
+    [Input('input-text', 'value'),
+     Input("search_id", "n_clicks")]
 )
-def update_output(topic):
+def update_output(n_clicks,topic):
     if topic is None or topic == '':
         return 'You have not entered anything yet.'
     else:
-        if topic:
+        ctx = dash.callback_context
+        trigger = ctx.triggered[0]['prop_id'].split('.')[0]
+        if trigger == 'search_id':
             inputs = {
                 'topic': topic
             }

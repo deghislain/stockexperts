@@ -1,17 +1,21 @@
 research_task:
   description: >
-    Conduct a thorough research about {topic}
-    Make sure you find any interesting and relevant information given
-    the current year is 2024.
+    Conduct a thorough research on {topic} related stocks.
+    Make sure you find any interesting and relevant information given the current year is 2024.
+    Pay special attention to any significant events, market sentiments, stock current price, and analysts' opinions. 
+    Also include upcoming events like earnings and others.
   expected_output: >
-    A list with 10 bullet points of the most relevant information about {topic}
+    A list with 10 bullet points of the most performing {topic} related stocks which current price is below $10.
+    Do not include stocks with current price higher than $10.
   agent: researcher
 
 reporting_task:
   description: >
-    Review the context you got and expand each topic into a full section for a report.
-    Make sure the report is detailed and contains any and all relevant information.
+    Review the context you got and expand on each stock symbol into a full section for a report.
+    Pay special attention to financial health and market performance. This includes examining key financial metrics such as
+    P/E ratio, EPS growth, revenue trends, and debt-to-equity ratio. Also, analyze the stock's performance in comparison 
+    to its industry peers and overall market trends.
   expected_output: >
-    A fully fledge reports with the mains topics, each with a full section of information.
+    A fully fledge reports with financial health and market performance for each stock symbol or company.
     Formatted as markdown without '```'
   agent: reporting_analyst

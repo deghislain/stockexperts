@@ -7,7 +7,7 @@ def main_layout():
 
         html.Div([
             # Input field for user text
-            dcc.Input(id='input-text', type='text', placeholder='Type industry here...', debounce=True, style={'textAlign': 'center', "fontSize": "24px"}),
+            dcc.Input(id='input-text', type='text', placeholder='Type industry/technology here...e.g Finance/AI', debounce=True, style={'textAlign': 'center', "fontSize": "24px"}),
             html.Button("Search", id="search_id", n_clicks=0, style={'textAlign': 'center', "fontSize": "24px"}),
 
             # Div to display the output based on input
