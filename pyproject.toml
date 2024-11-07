@@ -1,0 +1,22 @@
+[project]
+name = "stockexperts"
+version = "0.1.0"
+description = "stockexperts using crewAI"
+authors = [
+    { name = "Your Name", email = "you@example.com" },
+]
+requires-python = ">=3.10,<3.11"
+dependencies = [
+    "crewai[tools]>=0.70.1,<1.0.0",
+    "streamlit>=1.39.0",
+    "dash>=2.18.2",
+]
+
+[project.scripts]
+stockexperts = "main:run"
+run_crew = "main:run"
+[build-system]
+requires = [
+    "hatchling",
+]
+build-backend = "hatchling.build"
