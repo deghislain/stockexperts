@@ -2,36 +2,43 @@ from dash import dcc, html
 
 
 def main_layout():
-    return html.Div([
+    return html.Main([
         html.H1("Online Stock Search Engine", style={'textAlign': 'center', 'color': 'blue'}),
 
         html.Div([
             # Input field for user text
-            dcc.Input(id='input-text', type='text', placeholder='Type industry/technology here...e.g Finance/AI', debounce=True, style={'textAlign': 'center', "fontSize": "24px"}),
-            html.Button("Search", id="search_id", n_clicks=0, style={'textAlign': 'center', "fontSize": "24px"}),
-
-            # Div to display the output based on input
-            html.Div(id='output-text', style={'margin-top': '20px', 'font-size': '20px'})
+            dcc.Input(id='input-text', type='text', placeholder='Type industry/sector here...e.g Technology/IT', debounce=True,
+                      style={'textAlign': 'center', "fontSize": "20px",  'width': '50%'}),
+            html.Button("Search", id="search_id", n_clicks=0, style={'textAlign': 'center', "fontSize": "20px"})
         ], style={
             'border': '1px solid #000',
-            'padding': '20px',
             'width': '50%',
-            'height': '50%',
+            'height': '20%',
             'margin': 'auto',
-            'background-color': '#f0f0f0',
+            'display': 'block',
+            'overflow': 'hidden',
+            'background-color': 'SlateBlue',
             'border-radius': '10px'
 
+        }),
+        html.Div(id='result_id', style={
+            'border': '1px solid #000',
+            'width': '50%',
+            'height': '80%',
+            'margin': 'auto',
+            'overflow': 'auto',
+            'background-color': 'white',
+            'border-radius': '10px'
         })
     ], style={
-        'textAlign': 'center',
         'width': '100vw',
         'height': '100vh',
+        'position': 'absolute',
+        'top': 0,
+        'left': 0,
+        'right': 0,
+        'bottom': 0,
+        'overflow': 'auto',
         'background': '#87CEEB',
-        'margin': '0',
-        'padding': '0',
-        'overflow': 'hidden',
-        'display': 'flex',
-        'flexDirection': 'column',
-        'justifyContent': 'center',
-        'alignItems': 'center'
+        'textAlign': 'center'
     }, id="main_layout")

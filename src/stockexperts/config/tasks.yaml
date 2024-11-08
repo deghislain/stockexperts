@@ -14,7 +14,7 @@ stock_research_task:
 
 financial_analysis_task:
   description: >
-    Using the search results from the research_analyst develop comprehensive stock profiles by expanding each symbol into a detailed report section. 
+    Using the search results in stock_report.md develop comprehensive stock profiles by expanding each symbol into a detailed report section. 
     Focus on financial health and market performance, 
     incorporating the following key metrics and analyses:
         Financial Health:
@@ -25,9 +25,15 @@ financial_analysis_task:
         Market Performance:
             Peer comparison: benchmark against industry averages and competitors
             Market trend analysis: assess stock performance relative to broader market indices
-
+        Stock Ranking:
+            Rank stocks 1-5 based on financial health, market performance, and growth potential.
+            Criteria:
+                Financials (P/E, EPS, revenue)
+                Peer comparison
+                Growth prospects
+                Dividend yield
     Ensure each stock profile provides a thorough assessment of its investment potential, highlighting strengths, weaknesses, opportunities, and threats (SWOT analysis).
   expected_output: >
-    A fully fledge reports with financial health and market performance for each stock symbol or company.
+    A fully fledge reports with financial health, market performance, and investment highlights on the top 3 performing stock symbol or company.
     Formatted as markdown without '```'
   agent: financial_analyst
