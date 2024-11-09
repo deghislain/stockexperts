@@ -1,6 +1,6 @@
 stock_research_task:
   description: >
-    Conduct comprehensive research on {topic}-related stocks, focusing on 2024 market trends and insights. Gather and analyze relevant data on:
+    Conduct comprehensive research on {topic} stocks, focusing on 2024 market trends and insights. Gather and analyze relevant data on:
         Significant events and market sentiments
         Current stock prices and trading volumes
         Analysts' opinions and consensus estimates
@@ -8,13 +8,13 @@ stock_research_task:
 
     Deliver a detailed report highlighting key findings, trends, and investment implications.
   expected_output: >
-    A list with 10 bullet points of the most performing {topic} related stocks which current price is below $10.
+    A list with 10 bullet points of the most performing {topic}  stocks which current price is below $10.
     Do not include stocks with current price higher than $10.
   agent: research_analyst
 
 financial_analysis_task:
   description: >
-    Using the search results in stock_report.md develop comprehensive stock profiles by expanding each symbol into a detailed report section. 
+    Using the search results from stock_research_task, develop comprehensive stock profiles by expanding each symbol into a detailed report section. 
     Focus on financial health and market performance, 
     incorporating the following key metrics and analyses:
         Financial Health:
@@ -37,3 +37,17 @@ financial_analysis_task:
     A fully fledge reports with financial health, market performance, and investment highlights on the top 3 performing stock symbol or company.
     Formatted as markdown without '```'
   agent: financial_analyst
+
+stocks_information_gathering:
+     description: >
+      Collect and summarize recent news articles, press
+      releases, and market analyses related to each of the following stock symbol:{topic} its company, and its industry.
+      Pay special attention to any significant events, market sentiments, and analysts' opinions.
+      Also include upcoming events like earnings and others.
+       
+      Deliver a detailed report highlighting key findings, trends, and investment implications.
+     expected_output: >
+       A bullet points report that includes a comprehensive summary of the latest news, 
+       any notable shifts in market sentiment, and potential impacts on the stock. 
+       Make sure to use the most recent data as possible.
+     agent: research_analyst

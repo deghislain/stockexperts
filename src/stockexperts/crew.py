@@ -11,10 +11,16 @@ llm = LLM(
 )
 today = str(date.today())
 
+tasks = {'search': 'stock_research_task', 'compare': 'stocks_information_gathering'}
+
 
 @CrewBase
 class StockexpertsCrew():
     """Stockexperts crew"""
+
+    def __init__(self, task_type):
+        self.task_type = task_type
+
 
     @agent
     def research_analyst(self) -> Agent:
@@ -36,15 +42,15 @@ class StockexpertsCrew():
     @task
     def stock_research_task(self) -> Task:
         return Task(
-            config=self.tasks_config['stock_research_task'],
-            output_file=today + '_stock_research_results.md'
+            config=self.tasks_config[tasks.get(self.task_type)],
+            output_file=today + '_' +self.task_type +'_stock_research_results.md'
         )
 
     @task
     def financial_analysis_task(self) -> Task:
         return Task(
             config=self.tasks_config['financial_analysis_task'],
-            output_file=today + '_stock_report.md'
+            output_file=today + '_' +self.task_type + '_stock_report.md'
         )
 
     @crew

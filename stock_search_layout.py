@@ -3,9 +3,9 @@ from dash import dcc, html
 
 # Style dictionaries
 INPUT_STYLE = {'textAlign': 'center', "fontSize": "20px", 'width': '50%'}
-BUTTON_STYLE = {'textAlign': 'center', "fontSize": "20px"}
+BUTTON_STYLE = {'textAlign': 'center', "fontSize": "20px", 'border-radius': '10px'}
 CONTAINER_STYLE = {'border': '1px solid #000', 'width': '50%', 'margin': 'auto', 'display': 'block', 'overflow': 'hidden', 'background-color': 'SlateBlue', 'border-radius': '15px'}
-RESULT_STYLE = {'border': '1px solid #000', 'width': '50%', 'height': '80%', 'margin': 'auto', 'overflow': 'auto', 'background-color': 'white', 'border-radius': '10px'}
+RESULT_STYLE = {'border': '1px solid #000', 'width': '50%', 'height': '80%', 'margin': 'auto', 'overflow': 'auto', 'background-color': 'white', 'border-radius': '15px'}
 
 
 def main_layout():
