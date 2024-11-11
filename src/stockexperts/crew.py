@@ -43,14 +43,14 @@ class StockexpertsCrew():
     def stock_research_task(self) -> Task:
         return Task(
             config=self.tasks_config[tasks.get(self.task_type)],
-            output_file=today + '_' +self.task_type +'_stock_research_results.md'
+            output_file='reports/md/' + today + '_' +self.task_type +'_stock_research_results.md'
         )
 
     @task
     def financial_analysis_task(self) -> Task:
         return Task(
             config=self.tasks_config['financial_analysis_task'],
-            output_file=today + '_' +self.task_type + '_stock_report.md'
+            output_file='reports/md/' + today + '_' +self.task_type + '_stock_report.md'
         )
 
     @crew

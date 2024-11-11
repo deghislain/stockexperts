@@ -4,6 +4,7 @@ import dash
 from dash import html, dcc
 from dash.dependencies import Input, Output
 from stock_search_layout import main_layout
+from stockexperts.pdf_generator import generate_pdf
 
 topic = ""
 
@@ -20,18 +21,21 @@ app.layout = main_layout()
     [Input('input-text', 'value'),
      Input("search-button", "n_clicks"),
      Input('input-stock-id', 'value'),
-     Input("compare-button", "n_clicks")]
+     Input("compare-button", "n_clicks"),
+     Input("exp_btn_id", "n_clicks")]
 )
-def update_output(topic, n_clicks, stocks, compare):
+def update_output(topic, n_clicks, stocks, compare,exp_btn_id):
+    ctx = dash.callback_context
+    trigger = ctx.triggered[0]['prop_id'].split('.')[0]
+    if trigger == 'exp_btn_id':
+        return generate_pdf()
     if stocks:
         topic = stocks
     if topic is None or topic == '':
         return html.P('You have not entered anything yet.', id='output-text')
-
     else:
         task_type = "compare"
-        ctx = dash.callback_context
-        trigger = ctx.triggered[0]['prop_id'].split('.')[0]
+
         if trigger == 'search-button':
             task_type = "search"
             topic = topic + '-related'
@@ -46,3 +50,6 @@ def update_output(topic, n_clicks, stocks, compare):
 
 def run():
     app.run_server(debug=True)
+
+
+

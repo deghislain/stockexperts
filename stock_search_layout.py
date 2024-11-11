@@ -20,7 +20,7 @@ def main_layout():
                       debounce=True, style={'textAlign': 'center', "fontSize": "20px", 'width': '50%', 'margin-left': '9%', 'margin-top': '5%'}),
             html.Button("Compare Stocks", id="compare-button", n_clicks=0, style=BUTTON_STYLE),
             html.Br(),
-            html.Button("Export as PDF", id="export-button", n_clicks=0, style=BUTTON_STYLE),
+            html.Button("Export as PDF", id="exp_btn_id", n_clicks=0, style=BUTTON_STYLE),
         ], style=CONTAINER_STYLE),
 
         html.Div(id='result-id', style=RESULT_STYLE)
