@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-from stockexperts.crew import StockexpertsCrew
+from stockexperts.crew import StockExpertsSearchCrew
+from stockexperts.crew import StockExpertsCompareCrew
 import dash
 from dash import html, dcc
 from dash.dependencies import Input, Output
@@ -43,7 +44,11 @@ def update_output(topic, n_clicks, stocks, compare,exp_btn_id):
         inputs = {
             'topic': topic
         }
-        result = StockexpertsCrew(task_type).crew().kickoff(inputs=inputs)
+        result = None
+        if task_type == 'search':
+            result = StockExpertsSearchCrew().crew().kickoff(inputs=inputs)
+        else:
+            result = StockExpertsCompareCrew().crew().kickoff(inputs=inputs)
         if result:
             return dcc.Markdown(str(result.tasks_output[1]))
 

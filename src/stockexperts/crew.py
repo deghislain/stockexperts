@@ -15,11 +15,8 @@ tasks = {'search': 'stock_research_task', 'compare': 'stocks_information_gatheri
 
 
 @CrewBase
-class StockexpertsCrew():
+class StockExpertsSearchCrew():
     """Stockexperts crew"""
-
-    def __init__(self, task_type):
-        self.task_type = task_type
 
 
     @agent
@@ -42,15 +39,15 @@ class StockexpertsCrew():
     @task
     def stock_research_task(self) -> Task:
         return Task(
-            config=self.tasks_config[tasks.get(self.task_type)],
-            output_file='reports/md/' + today + '_' +self.task_type +'_stock_research_results.md'
+            config=self.tasks_config['stock_research_task'],
+            output_file='reports/md/' + today + '_search_stock_results.md'
         )
 
     @task
     def financial_analysis_task(self) -> Task:
         return Task(
             config=self.tasks_config['financial_analysis_task'],
-            output_file='reports/md/' + today + '_' +self.task_type + '_stock_report.md'
+            output_file='reports/md/' + today + '_search_stock_report.md'
         )
 
     @crew
@@ -64,3 +61,53 @@ class StockexpertsCrew():
             manager_llm=llm,
             # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
         )
+
+
+@CrewBase
+class StockExpertsCompareCrew():
+    """Stockexperts crew"""
+
+
+    @agent
+    def research_analyst(self) -> Agent:
+        return Agent(
+            config=self.agents_config['research_analyst'],
+            llm=llm,
+            # tools=[MyCustomTool()], # Example of custom tool, loaded on the beginning of file
+            verbose=True
+        )
+
+    @agent
+    def financial_analyst(self) -> Agent:
+        return Agent(
+            config=self.agents_config['financial_analyst'],
+            llm=llm,
+            verbose=True
+        )
+
+    @task
+    def stock_research_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['stocks_information_gathering'],
+            output_file='reports/md/' + today + '_compare_stock_results.md'
+        )
+
+    @task
+    def financial_analysis_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['financial_analysis_task'],
+            output_file='reports/md/' + today + '_compare_stock_report.md'
+        )
+
+    @crew
+    def crew(self) -> Crew:
+        """Creates the Stockexperts crew"""
+        return Crew(
+            agents=self.agents,  # Automatically created by the @agent decorator
+            tasks=self.tasks,  # Automatically created by the @task decorator
+            process=Process.sequential,
+            verbose=True,
+            manager_llm=llm,
+            # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
+        )
+

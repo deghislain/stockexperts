@@ -1,6 +1,6 @@
 stock_research_task:
   description: >
-    Conduct comprehensive research on {topic} stocks, focusing on 2024 market trends and insights. Gather and analyze relevant data on:
+    Conduct comprehensive research on {topic}-related stocks, focusing on 2024 market trends and insights. Gather and analyze relevant data on:
         Significant events and market sentiments
         Current stock prices and trading volumes
         Analysts' opinions and consensus estimates
