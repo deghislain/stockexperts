@@ -86,9 +86,9 @@ class StockExpertsCompareCrew():
         )
 
     @task
-    def stock_research_task(self) -> Task:
+    def stocks_information_gathering_task(self) -> Task:
         return Task(
-            config=self.tasks_config['stocks_information_gathering'],
+            config=self.tasks_config['stocks_information_gathering_task'],
             output_file='reports/md/' + today + '_compare_stock_results.md'
         )
 

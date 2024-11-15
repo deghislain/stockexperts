@@ -25,34 +25,28 @@ app.layout = main_layout()
      Input("compare-button", "n_clicks"),
      Input("exp_btn_id", "n_clicks")]
 )
-def update_output(topic, n_clicks, stocks, compare,exp_btn_id):
+def update_output(topic, n_clicks, stocks, compare, exp_btn_id):
     ctx = dash.callback_context
     trigger = ctx.triggered[0]['prop_id'].split('.')[0]
-    print(trigger)
+
     if trigger == 'exp_btn_id':
-        print('calling generate_pdf')
-        return generate_pdf()
-    if stocks:
-        topic = stocks
-    if topic is None or topic == '':
+        last_task = '_compare' if stocks else '_search' if topic else ''
+        if last_task:
+            return generate_pdf(last_task)
+
+    if not topic and not stocks:
         return html.P('You have not entered anything yet.', id='output-text')
+
+    inputs = {'topic': topic or stocks}
+
+    if trigger == 'search-button':
+        result = StockExpertsSearchCrew().crew().kickoff(inputs=inputs)
+    elif trigger == 'compare-button':
+        result = StockExpertsCompareCrew().crew().kickoff(inputs=inputs)
     else:
-        task_type = "compare"
+        return None
 
-        if trigger == 'search-button':
-            task_type = "search"
-            topic = topic + '-related'
-
-        inputs = {
-            'topic': topic
-        }
-        result = None
-        if task_type == 'search':
-            result = StockExpertsSearchCrew().crew().kickoff(inputs=inputs)
-        else:
-            result = StockExpertsCompareCrew().crew().kickoff(inputs=inputs)
-        if result:
-            return dcc.Markdown(str(result.tasks_output[1]))
+    return dcc.Markdown(str(result.tasks_output[1]))
 
 
 def run():

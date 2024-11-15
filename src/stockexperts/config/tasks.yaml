@@ -38,7 +38,7 @@ financial_analysis_task:
     Formatted as markdown without '```'
   agent: financial_analyst
 
-stocks_information_gathering:
+stocks_information_gathering_task:
      description: >
       Collect and summarize recent news articles, press
       releases, and market analyses related to each of the following stock symbol:{topic} its company, and its industry.

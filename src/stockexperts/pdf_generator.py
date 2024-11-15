@@ -2,7 +2,6 @@ from datetime import date
 from xhtml2pdf import pisa
 from markdown_it import MarkdownIt
 from io import BytesIO
-import os
 
 
 OUTCOME_MSG = "PDF successfully exported. You can find it here: reports/pdf within this project"
@@ -11,21 +10,13 @@ PATH_TO_GENERATED_CONTENT = 'reports/md/'
 PATH_TO_PDF = 'reports/pdf/'
 
 
-def generate_pdf():
+def generate_pdf(task_type):
     global OUTCOME_MSG
     print("generate_pdf Start")
 
-    pdf_name = ""
-
     today = str(date.today())
-    file_path = PATH_TO_GENERATED_CONTENT + today + "_search_stock_report.md"
-    pdf_name = "_search_stock_report.pdf"
-    if not os.path.exists(file_path):
-        file_path = PATH_TO_GENERATED_CONTENT + today + "_compare_stock_report.md"
-        pdf_name = "_compare_stock_report.pdf"
-    print(pdf_name, "********************")
-    print(file_path, "********************")
-
+    file_path = PATH_TO_GENERATED_CONTENT + today + task_type + "_stock_report.md"
+    pdf_name = task_type + "_stock_report.pdf"
 
     try:
         md = MarkdownIt()

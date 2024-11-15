@@ -2,3 +2,4 @@
 __pycache__/
 *.md
 test*.py
+*.pdf
