@@ -28,7 +28,9 @@ app.layout = main_layout()
 def update_output(topic, n_clicks, stocks, compare,exp_btn_id):
     ctx = dash.callback_context
     trigger = ctx.triggered[0]['prop_id'].split('.')[0]
+    print(trigger)
     if trigger == 'exp_btn_id':
+        print('calling generate_pdf')
         return generate_pdf()
     if stocks:
         topic = stocks

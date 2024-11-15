@@ -1,52 +1,48 @@
 from datetime import date
-from fpdf import FPDF
+from xhtml2pdf import pisa
+from markdown_it import MarkdownIt
+from io import BytesIO
 import os
 
 
-OUTCOME_MSG = "PDF successfully exported. You can find it here doc/pdf within this project"
-
+OUTCOME_MSG = "PDF successfully exported. You can find it here: reports/pdf within this project"
 
 PATH_TO_GENERATED_CONTENT = 'reports/md/'
 PATH_TO_PDF = 'reports/pdf/'
 
 
 def generate_pdf():
+    global OUTCOME_MSG
     print("generate_pdf Start")
-    pdf = FPDF()
-    pdf.add_page()
+
     pdf_name = ""
 
-    pdf.set_font("Arial", size=12)
     today = str(date.today())
-    #title = today + topic
     file_path = PATH_TO_GENERATED_CONTENT + today + "_search_stock_report.md"
-    pdf_name = "_search_stock_report"
+    pdf_name = "_search_stock_report.pdf"
     if not os.path.exists(file_path):
         file_path = PATH_TO_GENERATED_CONTENT + today + "_compare_stock_report.md"
-        pdf_name = "_compare_stock_report"
+        pdf_name = "_compare_stock_report.pdf"
+    print(pdf_name, "********************")
+    print(file_path, "********************")
 
 
     try:
-        with open(file_path, "r") as file:
-            for line in file:
-                # Split line into words
-                words = line.split()
-                chunk = ""
-                for word in words:
-                    # Check if adding word exceeds max line length
-                    if len(chunk) + len(word) + 1 > 95:
-                        pdf.cell(200, 10, txt=chunk.strip(), ln=True, align='L')
-                        chunk = word + " "
-                    else:
-                        chunk += word + " "
+        md = MarkdownIt()
+        with open(file_path, 'r') as f:
+            markdown_string = f.read()
+        html_content = md.render(markdown_string)
+        pdf_output = BytesIO()
 
-                # Add remaining chunk to PDF
-                if chunk:
-                    pdf.cell(200, 10, txt=chunk.strip(), ln=True, align='L')
+        pisa.CreatePDF(html_content, dest=pdf_output, encoding='utf-8')
 
-        # Save the PDF with filename
-        pdf.output(PATH_TO_PDF + today + pdf_name + ".pdf")
+        # Open a PDF file for writing in binary mode
+        with open(PATH_TO_PDF + today + pdf_name, "wb") as pdf_file:
+            # Write the PDF content to the file
+            pdf_file.write(pdf_output.getvalue())
+
     except Exception as ex:
         OUTCOME_MSG = "Error while generating the pdf file. Please, try again"
         print("Error while getting the summary", ex)
 
+    return OUTCOME_MSG

@@ -47,7 +47,7 @@ stocks_information_gathering:
        
       Deliver a detailed report highlighting key findings, trends, and investment implications.
      expected_output: >
-       A bullet points report that includes a comprehensive summary of the latest news, 
+       A list of bullet points report that includes a comprehensive summary of the latest news, 
        any notable shifts in market sentiment, and potential impacts on the stock. 
        Make sure to use the most recent data as possible.
      agent: research_analyst

@@ -11,7 +11,7 @@ llm = LLM(
 )
 today = str(date.today())
 
-tasks = {'search': 'stock_research_task', 'compare': 'stocks_information_gathering'}
+
 
 
 @CrewBase
