@@ -44,7 +44,7 @@ def update_output(topic, n_clicks, stocks, compare, exp_btn_id):
     elif trigger == 'compare-button':
         result = StockExpertsCompareCrew().crew().kickoff(inputs=inputs)
     else:
-        return None
+        return html.P('Please provide an input and click a button to start.', id='output-text')
 
     return dcc.Markdown(str(result.tasks_output[1]))
 
